@@ -1,6 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa6";
 import { FaStarHalfAlt } from "react-icons/fa";
+import { Link } from "react-router";
 // import { FaStarHalfAlt } from "react-icons/fa6";
 
 export default function CardProduct({
@@ -11,9 +12,13 @@ export default function CardProduct({
   category,
   rating,
   stock,
+  id,
 }) {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden px-5">
+    <Link
+      to={`/product/${id}`}
+      className="bg-white rounded-lg shadow-md overflow-hidden px-5"
+    >
       <div className="relative">
         <img
           src={thumbnail}
@@ -97,6 +102,6 @@ export default function CardProduct({
           </button> */}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

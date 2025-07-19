@@ -13,15 +13,14 @@ import CardProduct from "./Components/Card/card-products";
 import NavBar from "./Components/Layout/Navbar";
 import Navbar from "./Components/Layout/Navbar";
 import FooterProduct from "./Components/Layout/footer";
+import { getData } from "./api/api";
 
 function App() {
   // const [count, setCount] = useState(0);
   const [products, setProucts] = React.useState([]);
 
   let getProucts = async () => {
-    let result = await fetch("https://dummyjson.com/products").then(
-      (response) => response.json()
-    );
+    let result = await getData("/products");
     setProucts(result.products);
   };
 
@@ -53,6 +52,7 @@ function App() {
               category={product.category}
               rating={product.rating}
               stock={product.stock}
+              id={product.id}
             />
           ))}
         </section>

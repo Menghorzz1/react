@@ -1,12 +1,26 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const menu = [
+    {
+      title: "Product",
+      path: "/product",
+    },
+    {
+      title: "Services",
+      path: "/services",
+    },
+    {
+      title: "About-Us",
+      path: "/about",
+    },
+  ];
   return (
     <div>
       <header className="bg-white">
         <div className="mx-auto flex h-16 max-w-screen-2xl items-center gap-8 px-8">
-          <a className="block text-teal-600" href="#">
+          <NavLink className="block text-teal-600" to="/">
             <span className="sr-only">Home</span>
             <svg
               className="h-8"
@@ -19,70 +33,25 @@ export default function Navbar() {
                 fill="currentColor"
               />
             </svg>
-          </a>
+          </NavLink>
 
           <div className="flex flex-1 items-center justify-end md:justify-between">
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
-                <li>
-                  <NavLink
-                    to="/about"
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
-                  >
-                    About
-                  </NavLink>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
-                  >
-                    {" "}
-                    Careers{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
-                  >
-                    {" "}
-                    History{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
-                  >
-                    {" "}
-                    Services{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
-                  >
-                    {" "}
-                    Projects{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a
-                    className="text-gray-500 transition hover:text-gray-500/75"
-                    href="#"
-                  >
-                    {" "}
-                    Blog{" "}
-                  </a>
-                </li>
+                {menu.map((nav, index) => (
+                  <li key={index}>
+                    <NavLink
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-gray-500 transition hover:text-gray-500/75"
+                          : ""
+                      }
+                      to={nav.path}
+                    >
+                      {nav.title}
+                    </NavLink>
+                  </li>
+                ))}
               </ul>
             </nav>
 
@@ -91,7 +60,6 @@ export default function Navbar() {
                 <NavLink
                   to="/login"
                   className="block rounded-md bg-teal-50 px-5 py-2.5 text-sm font-medium text-white  hover:bg-teal-700 "
-                  href="#"
                 >
                   Login
                 </NavLink>
